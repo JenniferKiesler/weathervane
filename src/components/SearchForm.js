@@ -29,15 +29,16 @@ const SearchForm = ({ getCurrentWeather }) => {
   }
 
   return (
-    <form id="search-form" onSubmit={handleSubmit}>
-      <label htmlFor="search-input">Search for a City:</label>
+    <form id="search-form" className="text-center" onSubmit={handleSubmit}>
+      <label htmlFor="search-input" className="form-label">Search for a City:</label>
       <input 
         type="search" 
         id="search-input"
+        className="form-control mx-auto"
         name='search'
         value={inputValue}
         onChange={handleChange}/>
-      <button type="submit" id="search-button">Search</button>
+      <button type="submit" id="search-button" className="btn col-3 my-2">Search</button>
     </form>
   )
 }

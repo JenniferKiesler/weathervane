@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+:root {
+  --teal-color: #0595b5;
+  --light-blue-color: #3AB0F0;
+  --light-pink-color: #c26bf0;
+  --purple-color: #190F6C;
+  --light-purple-color: #4823C7;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  color: white;
+  background: linear-gradient(var(--teal-color), var(--light-blue-color));
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  color: var(--purple-color);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+p {
+  margin-bottom: 0;
+}
+
+#search-button {
+  background: var(--light-purple-color);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#search-button:hover {
+  background: var(--light-pink-color);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.card {
+  background: var(--teal-color);
+  color: white;
+  box-shadow: 0px 0px 20px 5px var(--purple-color);
+}
+
+#search-input, #current-weather {
+  width: 75%;
+}
+
+#city-name-date {
+  color: var(--purple-color);
+}
+
+#temperature {
+  font-size: 50px;
+  line-height: 1;
+  /* margin-bottom: -15px; */
+}
+
+#weather-icon {
+  width: 120px;
+}
+
+@media (min-width: 768px) {
+  #search-input, #current-weather {
+    width: 50%;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (max-width: 767px) and (min-width: 350px) {
+  #current-weather {
+    width: 85%;
+  }
+}
+
+@media (max-width: 349px) {
+  #current-weather {
+    width: 95%;
   }
 }
