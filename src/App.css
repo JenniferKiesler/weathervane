@@ -52,6 +52,11 @@ p {
   width: 120px;
 }
 
+.forecast-icon {
+  width: 100px;
+  margin: auto;
+}
+
 @media (min-width: 768px) {
   #search-input, #current-weather {
     width: 50%;

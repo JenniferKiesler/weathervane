@@ -54,7 +54,7 @@ function App() {
   }
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <header>
         <h1 className="text-center fs-1 fw-bold py-3">WeatherVane</h1>
       </header>

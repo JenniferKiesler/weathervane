@@ -24,7 +24,7 @@ const CurrentWeather = ({ cityInfo, errorMessage }) => {
   return (
     <>
       {cityInfo.name != "" ? 
-      <div className="mt-3">
+      <div className="mt-3 container">
         <h2 id="city-name-date" className="text-center pb-2 fw-bold">{cityInfo.name} ({today})</h2>
         <div id="current-weather" className="card mx-auto">
           <div className="row col-12 mx-auto">

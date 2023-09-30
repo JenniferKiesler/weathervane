@@ -30,7 +30,7 @@ const SearchForm = ({ getCurrentWeather, getForecast }) => {
   }
 
   return (
-    <form id="search-form" className="text-center" onSubmit={handleSubmit}>
+    <form id="search-form" className="text-center container" onSubmit={handleSubmit}>
       <label htmlFor="search-input" className="form-label">Search for a City:</label>
       <input 
         type="search" 
