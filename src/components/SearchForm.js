@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const SearchForm = ({ getCurrentWeather }) => {
+const SearchForm = ({ getCurrentWeather, getForecast }) => {
   const [inputValue, setInputValue] = useState("")
 
   const handleChange = (event) => {
@@ -22,6 +22,7 @@ const SearchForm = ({ getCurrentWeather }) => {
       setInputValue(cityInput)
 
       getCurrentWeather(cityInput)
+      getForecast(cityInput)
       setInputValue("")
     } catch (err) {
       console.error(err)

@@ -8,17 +8,48 @@ function App() {
   const [cityInfo, setCityInfo] = useState({
     name: ""
   })
+  const [forecast, setForecast] = useState([])
+  const [errorMessage, setError] = useState("")
 
   let apiKey = process.env.REACT_APP_API_KEY
 
   const getCurrentWeather = (city) => {
-    console.log(city)
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey)
     .then(response => {
       return response.json()
     })
     .then(cityData => {
-      setCityInfo(cityData)
+      if (cityData.cod != "404") {
+        setCityInfo(cityData)
+      } else {
+        setError(cityData.message)
+        setCityInfo({name: ""})
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
+
+  const getForecast = (city) => {
+    console.log(city)
+    fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + apiKey)
+    .then(response => {
+      return response.json()
+    })
+    .then(cityData => {
+      if (cityData.cod != "404") {
+        let fiveDays = []
+        for (let i = 0; i < cityData.list.length; i = i + 8) {
+          fiveDays.push(cityData.list[i]);
+          setForecast(fiveDays)
+        }
+      } else {
+        setForecast([])
+      }
+    })
+    .catch(error => {
+      console.log(error)
     })
   }
 
@@ -30,11 +61,15 @@ function App() {
       <main>
         <SearchForm
           getCurrentWeather={getCurrentWeather}
+          getForecast={getForecast}
         />
         <CurrentWeather
           cityInfo={cityInfo}
+          errorMessage={errorMessage}
         />
-        <WeatherForecast/>
+        <WeatherForecast
+          forecast={forecast}
+        />
       </main>
     </div>
   );

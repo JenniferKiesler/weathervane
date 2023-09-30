@@ -39,14 +39,13 @@ p {
   width: 75%;
 }
 
-#city-name-date {
+#city-name-date, #five-day {
   color: var(--purple-color);
 }
 
 #temperature {
   font-size: 50px;
   line-height: 1;
-  /* margin-bottom: -15px; */
 }
 
 #weather-icon {

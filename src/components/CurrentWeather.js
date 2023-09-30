@@ -1,20 +1,24 @@
 import moment from "moment";
 
-const CurrentWeather = ({ cityInfo }) => {
+const CurrentWeather = ({ cityInfo, errorMessage }) => {
   let today = moment().format('l');
-console.log(cityInfo)
+
   const capitalizeWords = (string) => {
-    let words = string.split(" ")
-    for (let i = 0; i < words.length; i++) {
-      words[i] = words[i][0].toUpperCase() + words[i].substring(1);
+    if (string != "") {
+      let words = string.split(" ")
+      for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substring(1);
+      }
+      let combinedString = words.join(" ")
+      return combinedString
     }
-    let combinedString = words.join(" ")
-    return combinedString
   }
 
   const roundTemp = (temp) => {
-    let roundedTemp = Math.round(temp)
-    return roundedTemp
+    if (temp != null) {
+      let roundedTemp = Math.round(temp)
+      return roundedTemp
+    }
   }
 
   return (
@@ -37,7 +41,7 @@ console.log(cityInfo)
           </div>
         </div>
       </div>
-      : null
+      : <p className="text-center fs-1 text-danger fw-bold">{capitalizeWords(errorMessage)}</p>
       }
     </>
   )
