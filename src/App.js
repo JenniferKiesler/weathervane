@@ -2,16 +2,38 @@ import './App.css';
 import SearchForm from './components/SearchForm';
 import CurrentWeather from './components/CurrentWeather';
 import WeatherForecast from './components/WeatherForecast';
-import React, {useState} from 'react';
+import SearchHistory from './components/SearchHistory';
+import React, {useEffect, useState} from 'react';
 
 function App() {
   const [cityInfo, setCityInfo] = useState({
     name: ""
   })
+  const [cityName, setCityName] = useState("")
+  const [cities, setCities] = useState([])
   const [forecast, setForecast] = useState([])
   const [errorMessage, setError] = useState("")
 
   let apiKey = process.env.REACT_APP_API_KEY
+
+  useEffect(() => {
+    const cityHistory = JSON.parse(localStorage.getItem('cities'))
+    if (cityHistory) {
+      setCities(cityHistory)
+    }
+  }, [])
+
+  useEffect(() => {
+      localStorage.setItem('cities', JSON.stringify(cities))
+  }, [cities])
+
+  const saveSearch = (cityName) => {
+    if (!cities.includes(cityName)) {
+      const savedCities = [...cities, cityName]
+      setCities([...cities, cityName])
+      localStorage.setItem('cities', JSON.stringify(savedCities))
+    }
+  }
 
   const getCurrentWeather = (city) => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey)
@@ -21,6 +43,8 @@ function App() {
     .then(cityData => {
       if (cityData.cod != "404") {
         setCityInfo(cityData)
+        setCityName(cityData.name)
+        saveSearch(cityData.name)
       } else {
         setError(cityData.message)
         setCityInfo({name: ""})
@@ -63,6 +87,9 @@ function App() {
         <SearchForm
           getCurrentWeather={getCurrentWeather}
           getForecast={getForecast}
+        />
+        <SearchHistory
+          cities={cities}
         />
         <CurrentWeather
           cityInfo={cityInfo}
