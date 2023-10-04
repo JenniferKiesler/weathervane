@@ -90,6 +90,8 @@ function App() {
         />
         <SearchHistory
           cities={cities}
+          getCurrentWeather={getCurrentWeather}
+          getForecast={getForecast}
         />
         <CurrentWeather
           cityInfo={cityInfo}

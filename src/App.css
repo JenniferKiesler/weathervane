@@ -38,6 +38,15 @@ p {
   display: none;
 }
 
+.saved-city {
+  background: var(--purple-color);
+  color: white;
+}
+
+.saved-city:hover {
+  background: var(--light-pink-color);
+}
+
 #search-button {
   background: var(--light-purple-color);
   color: white;
