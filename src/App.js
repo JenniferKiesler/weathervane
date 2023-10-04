@@ -38,6 +38,7 @@ function App() {
       return response.json()
     })
     .then(cityData => {
+      console.log(cityData)
       if (cityData.cod != "404") {
         let fiveDays = []
         for (let i = 0; i < cityData.list.length; i = i + 8) {
