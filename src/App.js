@@ -109,6 +109,14 @@ function App() {
           getForecast={getForecast}
           isLoading={isLoading}
         />
+        {isLoading ? 
+          <div className='text-center'>
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          : null
+        }
         <CurrentWeather
           cityInfo={cityInfo}
           errorMessage={errorMessage}

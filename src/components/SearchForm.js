@@ -12,18 +12,20 @@ const SearchForm = ({ getCurrentWeather, getForecast, isLoading, setIsLoading })
   const handleSubmit = (event) => {
     event.preventDefault();
     try {
-      let cityInput = inputValue.toLowerCase();
-      let individualWords = cityInput.split(" ")
-  
-      for (let i = 0; i < individualWords.length; i++) {
-        individualWords[i] = individualWords[i][0].toUpperCase() + individualWords[i].substring(1);
+      if (inputValue != "") {
+        let cityInput = inputValue.toLowerCase();
+        let individualWords = cityInput.split(" ")
+    
+        for (let i = 0; i < individualWords.length; i++) {
+          individualWords[i] = individualWords[i][0].toUpperCase() + individualWords[i].substring(1);
+        }
+    
+        cityInput = individualWords.join(" ")
+        setInputValue(cityInput)
+        getCurrentWeather(cityInput)
+        getForecast(cityInput)
+        setInputValue("")
       }
-  
-      cityInput = individualWords.join(" ")
-      setInputValue(cityInput)
-      getCurrentWeather(cityInput)
-      getForecast(cityInput)
-      setInputValue("")
     } catch (err) {
       console.error(err)
     }
@@ -39,7 +41,7 @@ const SearchForm = ({ getCurrentWeather, getForecast, isLoading, setIsLoading })
         name='search'
         value={inputValue}
         onChange={handleChange}/>
-      <button type="submit" id="search-button" className={!isLoading ? "btn col-3 my-2" : "btn col-3 my-2 disabled"}>Search</button>
+      <button type="submit" id="search-button" className={!isLoading ? "btn px-4 my-2" : "btn px-4 my-2 disabled"}>Search</button>
     </form>
   )
 }
