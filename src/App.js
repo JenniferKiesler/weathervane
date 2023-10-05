@@ -13,6 +13,7 @@ function App() {
   const [cities, setCities] = useState([])
   const [forecast, setForecast] = useState([])
   const [errorMessage, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   let apiKey = process.env.REACT_APP_API_KEY
 
@@ -36,6 +37,7 @@ function App() {
   }
 
   const getCurrentWeather = (city) => {
+    console.log(isLoading)
     let urlPath
     let testInput = /^[0-9]+$/.test(city)
     
@@ -66,6 +68,7 @@ function App() {
 
   const getForecast = (city) => {
     console.log(city)
+    setIsLoading(true)
     fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + apiKey)
     .then(response => {
       return response.json()
@@ -81,6 +84,7 @@ function App() {
       } else {
         setForecast([])
       }
+      setIsLoading(false)
     })
     .catch(error => {
       console.log(error)
@@ -96,11 +100,14 @@ function App() {
         <SearchForm
           getCurrentWeather={getCurrentWeather}
           getForecast={getForecast}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
         />
         <SearchHistory
           cities={cities}
           getCurrentWeather={getCurrentWeather}
           getForecast={getForecast}
+          isLoading={isLoading}
         />
         <CurrentWeather
           cityInfo={cityInfo}

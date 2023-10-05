@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 
-const SearchForm = ({ getCurrentWeather, getForecast }) => {
+const SearchForm = ({ getCurrentWeather, getForecast, isLoading, setIsLoading }) => {
   const [inputValue, setInputValue] = useState("")
+  console.log(isLoading)
 
   const handleChange = (event) => {
     const { value } = event.target
@@ -20,7 +21,6 @@ const SearchForm = ({ getCurrentWeather, getForecast }) => {
   
       cityInput = individualWords.join(" ")
       setInputValue(cityInput)
-
       getCurrentWeather(cityInput)
       getForecast(cityInput)
       setInputValue("")
@@ -39,7 +39,7 @@ const SearchForm = ({ getCurrentWeather, getForecast }) => {
         name='search'
         value={inputValue}
         onChange={handleChange}/>
-      <button type="submit" id="search-button" className="btn col-3 my-2">Search</button>
+      <button type="submit" id="search-button" className={!isLoading ? "btn col-3 my-2" : "btn col-3 my-2 disabled"}>Search</button>
     </form>
   )
 }

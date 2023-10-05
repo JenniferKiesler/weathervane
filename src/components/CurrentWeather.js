@@ -1,7 +1,7 @@
 import moment from "moment";
 
 const CurrentWeather = ({ cityInfo, errorMessage }) => {
-  let today = moment().format('l');
+  let today = moment().format('ddd DD');
 
   const capitalizeWords = (string) => {
     if (string != "") {

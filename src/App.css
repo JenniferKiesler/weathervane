@@ -56,6 +56,10 @@ p {
   background: var(--light-pink-color);
 }
 
+#search-button.disabled, .saved-city.disabled {
+  background: gray;
+}
+
 .card {
   background: var(--teal-color);
   color: white;
