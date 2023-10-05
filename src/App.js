@@ -36,7 +36,16 @@ function App() {
   }
 
   const getCurrentWeather = (city) => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + apiKey)
+    let urlPath
+    let testInput = /^[0-9]+$/.test(city)
+    
+    if (testInput) {
+      urlPath = "zip=" + city
+    } else {
+      urlPath = "q=" + city
+    }
+ 
+    fetch("https://api.openweathermap.org/data/2.5/weather?" + urlPath + "&units=imperial&appid=" + apiKey)
     .then(response => {
       return response.json()
     })
