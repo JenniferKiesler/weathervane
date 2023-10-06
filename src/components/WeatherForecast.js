@@ -1,8 +1,7 @@
 import moment from "moment"
 
 const WeatherForecast = ({ forecast }) => {
-  console.log(forecast)
-
+  // rounds the temperature
   const roundTemp = (temp) => {
     if (temp != null) {
       let roundedTemp = Math.round(temp)
@@ -10,6 +9,7 @@ const WeatherForecast = ({ forecast }) => {
     }
   }
 
+  // capitalizes the first letter of each word
   const capitalizeWords = (string) => {
     if (string != "") {
       let words = string.split(" ")
@@ -21,6 +21,7 @@ const WeatherForecast = ({ forecast }) => {
     }
   }
 
+  // creates an array of weather details for the forecast cards
   const setForecastCards = (day) => {
     if (day) {
       let forecastDate = moment(day.dt, "X").format("ddd DD");
@@ -34,6 +35,7 @@ const WeatherForecast = ({ forecast }) => {
     }
   }
 
+  // assigns the array of weather details to a variable
   let dayOne = setForecastCards(forecast[0]);
   let dayTwo = setForecastCards(forecast[1]);
   let dayThree = setForecastCards(forecast[2]);

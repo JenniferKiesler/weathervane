@@ -1,5 +1,3 @@
-import React, {useState, useEffect} from 'react';
-
 const SearchHistory = ({cities, getCurrentWeather, getForecast, isLoading}) => {
   return (
     <div className='text-center dropdown-center'>

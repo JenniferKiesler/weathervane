@@ -3,6 +3,7 @@ import moment from "moment";
 const CurrentWeather = ({ cityInfo, errorMessage }) => {
   let today = moment().format('ddd DD');
 
+  // capitalizes the first letter of each word
   const capitalizeWords = (string) => {
     if (string != "") {
       let words = string.split(" ")
@@ -14,6 +15,7 @@ const CurrentWeather = ({ cityInfo, errorMessage }) => {
     }
   }
 
+  // rounds the temperature
   const roundTemp = (temp) => {
     if (temp != null) {
       let roundedTemp = Math.round(temp)

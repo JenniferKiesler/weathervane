@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 
 const SearchForm = ({ getCurrentWeather, getForecast, isLoading, setIsLoading }) => {
   const [inputValue, setInputValue] = useState("")
-  console.log(isLoading)
 
   const handleChange = (event) => {
     const { value } = event.target
@@ -12,6 +11,7 @@ const SearchForm = ({ getCurrentWeather, getForecast, isLoading, setIsLoading })
   const handleSubmit = (event) => {
     event.preventDefault();
     try {
+      // capitalizes the first letter of each word
       if (inputValue != "") {
         let cityInput = inputValue.toLowerCase();
         let individualWords = cityInput.split(" ")
